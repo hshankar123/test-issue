@@ -28,8 +28,8 @@ pipeline {
       echo "$JOB_NAME"
       echo env.GIT_REPO
       echo env.GITHUB_COMMIT
-      echo "$BUILD_USER"
-      echo "$BUILD_USER_EMAIL"
+      echo env.BUILD_USER
+      echo env.BUILD_USER_EMAIL
           
     }
   }
