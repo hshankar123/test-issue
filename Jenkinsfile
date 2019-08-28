@@ -23,7 +23,7 @@ pipeline {
     }
     stage("printing other variables"){
     steps{
-      echo "change for PR"
+      
       echo "$BUILD_ID"
       echo "$BUILD_URL"
       echo "$JOB_NAME"
