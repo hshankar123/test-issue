@@ -23,10 +23,12 @@ pipeline {
     }
     stage("printing other variables"){
     steps{
+      echo "change for PR"
       echo "$BUILD_ID"
       echo "$BUILD_URL"
       echo "$JOB_NAME"
       echo env.GIT_REPO
+      echo env.GITHUB_PR
       echo env.GITHUB_COMMIT
       wrap([$class: 'BuildUser']) {
       echo "${BUILD_USER}"
