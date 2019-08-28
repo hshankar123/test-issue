@@ -28,8 +28,11 @@ pipeline {
       echo "$JOB_NAME"
       echo env.GIT_REPO
       echo env.GITHUB_COMMIT
-      echo ${BUILD_USER}
-      echo ${BUILD_USER_EMAIL}
+      wrap([$class: 'BuildUser']) {
+      echo "${BUILD_USER}"
+      echo "${BUILD_USER_ID}"
+      echo "${BUILD_USER_EMAIL}"
+    }
           
     }
   }
