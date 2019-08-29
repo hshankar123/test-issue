@@ -5,7 +5,7 @@ pipeline {
   environment {
     GOPATH = "$WORKSPACE"
     GITHUB_COMMIT="$GIT_COMMIT"
-    GITHUB_PR="$GIT_CHANGE_ID"
+    GITHUB_PR="$CHANGE_ID"
   }
 
   stages {
