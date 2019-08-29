@@ -31,7 +31,7 @@ pipeline {
       echo env.GITHUB_PR
       echo env.GITHUB_COMMIT
       echo "$JOB_OWNER"
-      echo "$JOB_COOWNERS_EMAILS "
+      echo "$JOB_COOWNERS_EMAILS"
       wrap([$class: 'BuildUser']) {
       echo "${BUILD_USER}"
       echo "${BUILD_USER_ID}"
