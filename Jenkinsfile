@@ -30,8 +30,10 @@ pipeline {
       echo env.GIT_REPO
       echo env.GITHUB_PR
       echo env.GITHUB_COMMIT
-      echo "$JOB_OWNER"
-      echo "$JOB_COOWNERS_EMAILS"
+      println "Primary owner ID: ${ownership.job.primaryOwnerId}"
+      println "Primary owner e-mail: ${primaryOwnerEmail}"
+      println "Secondary owner IDs: ${ownership.job.secondaryOwnerIds}"
+      println "Secondary owner e-mails: ${ownership.job.secondaryOwnerEmails}"
       wrap([$class: 'BuildUser']) {
       echo "${BUILD_USER}"
       echo "${BUILD_USER_ID}"
