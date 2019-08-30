@@ -41,13 +41,13 @@ pipeline {
       echo "${BUILD_USER_EMAIL}" 
        }
       println "Primary owner ID: ${ownership.job.primaryOwnerId}"
-      def primary_owner_id = ${ownership.job.primaryOwnerId}
+      def primary_owner_id = "${ownership.job.primaryOwnerId}"
       println "Primary owner e-mail: ${ownership.job.primaryOwnerEmail}"
-      def primary_owner_email = ${ownership.job.primaryOwnerEmail} 
+      def primary_owner_email = "${ownership.job.primaryOwnerEmail}" 
       println "Secondary owner IDs: ${ownership.job.secondaryOwnerIds}"
-      def secondary_owner_id = ${ownership.job.secondaryOwnerIds}
+      def secondary_owner_id = "${ownership.job.secondaryOwnerIds}"
       println "Secondary owner e-mails: ${ownership.job.secondaryOwnerEmails}"
-      def secondary_owner_email=${ownership.job.secondaryOwnerEmails}
+      def secondary_owner_email="${ownership.job.secondaryOwnerEmails}"
 
       
       }
