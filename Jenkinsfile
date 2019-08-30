@@ -24,21 +24,27 @@ pipeline {
     stage("printing other variables"){
     steps{
       
-      echo "$BUILD_ID"
-      echo "$BUILD_URL"
-      echo "$JOB_NAME"
-      echo env.GIT_REPO
-      echo env.GITHUB_PR
-      echo env.GITHUB_COMMIT
-      println "Primary owner ID: ${ownership.job.primaryOwnerId}"
-      println "Primary owner e-mail: ${ownership.job.primaryOwnerEmail}"
-      println "Secondary owner IDs: ${ownership.job.secondaryOwnerIds}"
-      println "Secondary owner e-mails: ${ownership.job.secondaryOwnerEmails}"
+      build_id = "$BUILD_ID"
+      build_url = "$BUILD_URL"
+      job_name = "$JOB_NAME"
+      #echo env.GIT_REPO
+      pr_no=env.GITHUB_PR
+      commit_id = env.GITHUB_COMMIT
+      #println "Primary owner ID: ${ownership.job.primaryOwnerId}"
+      primary_owner_id = ${ownership.job.primaryOwnerId}
+      #println "Primary owner e-mail: ${ownership.job.primaryOwnerEmail}"
+      primary_owner_email = ${ownership.job.primaryOwnerEmail} 
+      #println "Secondary owner IDs: ${ownership.job.secondaryOwnerIds}"
+      secondary_owner_id = ${ownership.job.secondaryOwnerIds}
+      #println "Secondary owner e-mails: ${ownership.job.secondaryOwnerEmails}"
+      secondary_owner_email=${ownership.job.secondaryOwnerEmails}
 
       wrap([$class: 'BuildUser']) {
-      echo "${BUILD_USER}"
-      echo "${BUILD_USER_ID}"
-      echo "${BUILD_USER_EMAIL}" 
+      build_user ="${BUILD_USER}"
+      build_user_id= "${BUILD_USER_ID}"
+      build_user_email="${BUILD_USER_EMAIL}"
+      #echo "${BUILD_USER_ID}"
+      #echo "${BUILD_USER_EMAIL}" 
        }
        
     
@@ -49,7 +55,7 @@ pipeline {
     stage("Build CVE job"){
       steps{
     
-      build job: 'dummy-freestyle', parameters: [[$class: 'StringParameterValue', name: 'COMMIT_ID', value:env.GITHUB_COMMIT], [$class: 'StringParameterValue', name: 'GITHUB_REPO', value:env.GIT_REPO],[$class: 'StringParameterValue', name: 'GITHUB_PR', value:env.GITHUB_PR]]
+      build job: 'dummy-freestyle', parameters: [[$class: 'StringParameterValue', name: 'COMMIT_ID', value:env.GITHUB_COMMIT], [$class: 'StringParameterValue', name: 'GITHUB_REPO', value:git_repo],[$class: 'StringParameterValue', name: 'GITHUB_PR', value:pr_no]]
       }
   }
 } 
