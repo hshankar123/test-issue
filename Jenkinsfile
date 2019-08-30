@@ -59,7 +59,7 @@ pipeline {
     stage("Build CVE job"){
       steps{
     
-      build job: 'dummy-freestyle', parameters: [[$class: 'StringParameterValue', name: 'COMMIT_ID', value:env.GITHUB_COMMIT], [$class: 'StringParameterValue', name: 'GITHUB_REPO', value:git_repo],[$class: 'StringParameterValue', name: 'GITHUB_PR', value:pr_no]]
+      build job: 'dummy-freestyle', parameters: [[$class: 'StringParameterValue', name: 'COMMIT_ID', value:env.GITHUB_COMMIT], [$class: 'StringParameterValue', name: 'GITHUB_REPO', value:"${git_repo}"],[$class: 'StringParameterValue', name: 'GITHUB_PR', value:"${pr_no}"]]
       }
   }
 } 
