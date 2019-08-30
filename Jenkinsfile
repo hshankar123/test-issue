@@ -23,7 +23,7 @@ pipeline {
     }
     stage("printing other variables"){
     steps{
-      
+      script{
       build_id = "$BUILD_ID"
       build_url = "$BUILD_URL"
       job_name = "$JOB_NAME"
@@ -46,7 +46,7 @@ pipeline {
       //echo "${BUILD_USER_ID}"
       //echo "${BUILD_USER_EMAIL}" 
        }
-       
+      }
     
           
     }
