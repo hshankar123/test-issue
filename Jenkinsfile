@@ -39,6 +39,7 @@ pipeline {
        env.PRIMARY_JOB_OWNER_EMAIL="${ownership.job.primaryOwnerEmail}" 
        env.SECONDARY_JOB_OWNER_EMAIL="${ownership.job.secondaryOwnerIds}"
        env.SECONDARY_JOB_OWNER_ID="${ownership.job.secondaryOwnerEmails}"
+       echo env.GOPATH
       //echo env.GIT_REPO
       //println "Primary owner ID: ${ownership.job.primaryOwnerId}"
       //println "Primary owner e-mail: ${ownership.job.primaryOwnerEmail}"
