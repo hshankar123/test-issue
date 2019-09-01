@@ -25,6 +25,7 @@ pipeline {
     }
     stage("printing other variables"){
     steps{
+      script{ 
        env.BUILD_ID="$BUILD_ID"
        env.BUILD_URL="$BUILD_URL"
        wrap([$class: 'BuildUser']) {
@@ -45,6 +46,7 @@ pipeline {
       //println "Primary owner e-mail: ${ownership.job.primaryOwnerEmail}"
       //println "Secondary owner IDs: ${ownership.job.secondaryOwnerIds}"
       //println "Secondary owner e-mails: ${ownership.job.secondaryOwnerEmails}"
+       }
       }  
     }
   }
