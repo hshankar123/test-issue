@@ -4,9 +4,9 @@ pipeline {
   }
   
   environment {
-    GOPATH = "$WORKSPACE"
-    GITHUB_COMMIT="$GIT_COMMIT"
-    GITHUB_PR="$CHANGE_ID"
+   
+    
+    //GITHUB_PR="$CHANGE_ID"
   }
   
 
@@ -26,8 +26,8 @@ pipeline {
     stage("printing other variables"){
     steps{
       script{ 
-       env.BUILD_ID="$BUILD_ID"
-       env.BUILD_URL="$BUILD_URL"
+       //env.BUILD_ID="$BUILD_ID"
+       //env.BUILD_URL="$BUILD_URL"
        wrap([$class: 'BuildUser']) {
        env.BUILD_USER="${BUILD_USER}"
        env.BUILD_USER_ID= "${BUILD_USER_ID}"
@@ -40,7 +40,7 @@ pipeline {
        env.PRIMARY_JOB_OWNER_EMAIL="${ownership.job.primaryOwnerEmail}" 
        env.SECONDARY_JOB_OWNER_EMAIL="${ownership.job.secondaryOwnerIds}"
        env.SECONDARY_JOB_OWNER_ID="${ownership.job.secondaryOwnerEmails}"
-       echo env.GOPATH
+       //echo env.GOPATH
       //echo env.GIT_REPO
       //println "Primary owner ID: ${ownership.job.primaryOwnerId}"
       //println "Primary owner e-mail: ${ownership.job.primaryOwnerEmail}"
@@ -53,8 +53,9 @@ pipeline {
     
     stage("Build CVE job"){
       steps{
-         
-      build job: 'dummy-freestyle', parameters: [[$class: 'StringParameterValue', name: 'COMMIT_ID', value:env.GITHUB_COMMIT], [$class: 'StringParameterValue', name: 'GITHUB_REPO', value:env.GIT_REPO],[$class: 'StringParameterValue', name: 'GITHUB_PR', value:env.GITHUB_PR],[$class: 'StringParameterValue', name: 'BUILD_ID', value:env.BUILD_ID],[$class: 'StringParameterValue', name: 'BUILD_URL', value:env.BUILD_URL],[$class: 'StringParameterValue', name: 'BUILD_USER', value:env.BUILD_USER],[$class: 'StringParameterValue', name: 'BUILD_USER_ID', value:env.BUILD_USER_ID],[$class: 'StringParameterValue', name: 'BUILD_USER_EMAIL', value:env.BUILD_USER_EMAIL],[$class: 'StringParameterValue', name: 'JOB_NAME', value:env.JOB_NAME],[$class: 'StringParameterValue', name: 'PRIMARY_JOB_OWNER_ID', value:env.PRIMARY_JOB_OWNER_ID],[$class: 'StringParameterValue', name: 'PRIMARY_JOB_OWNER_EMAIL', value:env.PRIMARY_JOB_OWNER_EMAIL],[$class: 'StringParameterValue', name: 'SECONDARY_JOB_OWNER_EMAIL', value:env.SECONDARY_JOB_OWNER_EMAIL],[$class: 'StringParameterValue', name: 'SECONDARY_JOB_OWNER_ID', value:env.SECONDARY_JOB_OWNER_ID]]
+      wrap([$class: 'BuildUser']) {   
+      build job: 'dummy-freestyle', parameters: [[$class: 'StringParameterValue', name: 'COMMIT_ID', value:env.GIT_COMMIT], [$class: 'StringParameterValue', name: 'GITHUB_REPO', value:env.GIT_REPO],[$class: 'StringParameterValue', name: 'GITHUB_PR', value:env.CHANGE_ID],[$class: 'StringParameterValue', name: 'BUILD_ID', value:env.BUILD_ID],[$class: 'StringParameterValue', name: 'BUILD_URL', value:env.BUILD_URL],[$class: 'StringParameterValue', name: 'BUILD_USER', value:env.BUILD_USER],[$class: 'StringParameterValue', name: 'BUILD_USER_ID', value:env.BUILD_USER_ID],[$class: 'StringParameterValue', name: 'BUILD_USER_EMAIL', value:env.BUILD_USER_EMAIL],[$class: 'StringParameterValue', name: 'JOB_NAME', value:env.JOB_NAME],[$class: 'StringParameterValue', name: 'PRIMARY_JOB_OWNER_ID', value:"${ownership.job.primaryOwnerId}"],[$class: 'StringParameterValue', name: 'PRIMARY_JOB_OWNER_EMAIL', value:"${ownership.job.primaryOwnerEmail}" ],[$class: 'StringParameterValue', name: 'SECONDARY_JOB_OWNER_EMAIL', value:env.SECONDARY_JOB_OWNER_EMAIL],[$class: 'StringParameterValue', name: 'SECONDARY_JOB_OWNER_ID', value:"${ownership.job.secondaryOwnerIds}"]]
+      }
       }
   }
 } 
