@@ -53,6 +53,8 @@ pipeline {
     
     stage("Build CVE job"){
       steps{
+      echo env.GITHUB_COMMIT
+      echo env.GITHUB_REPO
     
       build job: 'dummy-freestyle', parameters: [[$class: 'StringParameterValue', name: 'COMMIT_ID', value:env.GITHUB_COMMIT], [$class: 'StringParameterValue', name: 'GITHUB_REPO', value:"env.GITHUB_REPO"],[$class: 'StringParameterValue', name: 'GITHUB_PR', value:"env.GITHUB_PR"],[$class: 'StringParameterValue', name: 'BUILD_ID', value:"env.BUILD_ID"],[$class: 'StringParameterValue', name: 'BUILD_URL', value:"env.BUILD_URL"],[$class: 'StringParameterValue', name: 'BUILD_USER', value:"env.BUILD_USER"],[$class: 'StringParameterValue', name: 'BUILD_USER_ID', value:"env.BUILD_USER_ID"],[$class: 'StringParameterValue', name: 'BUILD_USER_EMAIL', value:"env.BUILD_USER_EMAIL"],[$class: 'StringParameterValue', name: 'JOB_NAME', value:"env.JOB_NAME"],[$class: 'StringParameterValue', name: 'PRIMARY_JOB_OWNER_ID', value:"env.PRIMARY_JOB_OWNER_ID"],[$class: 'StringParameterValue', name: 'PRIMARY_JOB_OWNER_EMAIL', value:"env.PRIMARY_JOB_OWNER_EMAIL"],[$class: 'StringParameterValue', name: 'SECONDARY_JOB_OWNER_EMAIL', value:"env.SECONDARY_JOB_OWNER_EMAIL"],[$class: 'StringParameterValue', name: 'SECONDARY_JOB_OWNER_ID', value:"env.SECONDARY_JOB_OWNER_ID"]]
       }
