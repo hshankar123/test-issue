@@ -39,7 +39,7 @@ post{
           env.CHANGE_ID=""
         }
         def secondary_owners="ibciteam@infoblox.com"
-        def sec_owner_list = ${ownership.job.secondaryOwnerEmails}
+        def sec_owner_list = "${ownership.job.secondaryOwnerEmails}"
         for(int i=0;i<sec_owner_list.size();i++)
         {
           secondary_owners+=","
