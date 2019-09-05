@@ -40,7 +40,7 @@ post{
         }
        
         def sec_owner_emails = "${ownership.job.secondaryOwnerEmails}".substring(1,"${ownership.job.secondaryOwnerEmails}".size()-1)
-        env.SECONDARY_OWNER_EMAILS=sec_owner_emails+",ibciteam@infoblox.com"
+        env.SECONDARY_OWNER_EMAILS=sec_owner_emails+", ibciteam@infoblox.com"
         echo env.SECONDARY_OWNER_EMAILS
        
        }
