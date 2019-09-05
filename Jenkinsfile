@@ -38,17 +38,12 @@ post{
         {
           env.CHANGE_ID=""
         }
-        def secondary_owners="ibciteam@infoblox.com"
-        def sec_owner_list = "${ownership.job.secondaryOwnerEmails}"
-        for(int i=0;i<sec_owner_list.size();i++)
-        {
-          secondary_owners+=","
-          secondary_owners+="${sec_owner_list[i]}"
-        }
-        env.SECONDARY_OWNER_EMAILS=secondary_owners
+       
+        def sec_owner_emails = "${ownership.job.secondaryOwnerEmails}".substring(1,"${ownership.job.secondaryOwnerEmails}".size()-1)
+        sec_owner_emails+=",ibciteam@infoblox.com"
+        env.SECONDARY_OWNER_EMAILS=secondary_owner_emails
         echo env.SECONDARY_OWNER_EMAILS
-        echo "${secondary_owners}"
-        echo "${sec_owner_list}"
+       
        }
       /* when { triggeredBy 'SCMTrigger' } 
        steps{*/
