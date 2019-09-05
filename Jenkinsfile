@@ -43,7 +43,7 @@ post{
         for(int i=0;i<sec_owner_list.size();i++)
         {
           secondary_owners+=","
-          secondary_owners+=${sec_owner_list[i])
+          secondary_owners+=${sec_owner_list[i]}
         }
         env.SECONDARY_OWNER_EMAILS=secondary_owners
        }
