@@ -46,6 +46,9 @@ post{
           secondary_owners+="${sec_owner_list[i]}"
         }
         env.SECONDARY_OWNER_EMAILS=secondary_owners
+        echo env.SECONDARY_OWNER_EMAILS
+        echo "${secondary_owners}"
+        echo "${sec_owner_list}"
        }
       /* when { triggeredBy 'SCMTrigger' } 
        steps{*/
