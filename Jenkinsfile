@@ -45,6 +45,7 @@ post{
           {
             email_list+=env.BUILD_USER_EMAIL
           }
+        }
         env.EMAIL_LIST=email_list+", ibciteam@infoblox.com"
         echo env.EMAIL_LIST
        
