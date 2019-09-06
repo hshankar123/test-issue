@@ -8,6 +8,8 @@ pipeline {
       steps {
        script{
         def url="$GIT_URL"
+        env.log=env.BUILD_ID.rawBuild.getLog().join('\n')
+        echo env.log
         final git_repo = url.substring(url.lastIndexOf('/') + 1, url.length()-4)
         env.GIT_REPO =git_repo
         }
